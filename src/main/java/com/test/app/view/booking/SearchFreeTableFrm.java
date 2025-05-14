@@ -10,47 +10,37 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-import javax.swing.Box;
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.JSpinner;
-import javax.swing.SpinnerDateModel;
 import java.util.Calendar;
 
-import com.test.app.dao.RoomDAO;
+import com.test.app.dao.TableDAO;
 import com.test.app.model.Booking;
-import com.test.app.model.BookedRoom;
-import com.test.app.model.Room;
+import com.test.app.model.BookedTable;
+import com.test.app.model.Table;
 import com.test.app.model.User;
+import com.test.app.view.client.SearchClientFrm;
 
-public class SearchFreeRoomFrm extends JFrame implements ActionListener {
-    private ArrayList<Room> listRoom;
-    private JSpinner dateCheckin, dateCheckout;
-    private JButton btnSearch;
-    private JTable tblResult;
-    private SearchFreeRoomFrm mainFrm;
-    private User user;
-    private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+public class SearchFreeTableFrm extends JFrame implements ActionListener {
+    private ArrayList<Table> listTable;
+    private final JSpinner dateCheckin;
+    private final JTextField maxNumberExpect;
+    private final JButton btnSearch;
+    private final JTable tblResult;
+    private final SearchFreeTableFrm mainFrm;
+    private final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
-    public SearchFreeRoomFrm(User user) {
-        super("Search free room");
-        this.user = user;
+    public SearchFreeTableFrm(User user) {
+        super("Tìm kiếm bàn trống");
         mainFrm = this;
-        listRoom = new ArrayList<Room>();
+        listTable = new ArrayList<>();
 
         JPanel pnMain = new JPanel();
         pnMain.setSize(this.getSize().width - 5, this.getSize().height - 20);
         pnMain.setLayout(new BoxLayout(pnMain, BoxLayout.Y_AXIS));
         pnMain.add(Box.createRigidArea(new Dimension(0, 10)));
 
-        JLabel lblHome = new JLabel("Search free room");
+        JLabel lblHome = new JLabel("Tìm kiếm bàn trống");
         lblHome.setAlignmentX(Component.CENTER_ALIGNMENT);
         lblHome.setFont(lblHome.getFont().deriveFont(20.0f));
         pnMain.add(lblHome);
@@ -59,20 +49,17 @@ public class SearchFreeRoomFrm extends JFrame implements ActionListener {
         JPanel pn1 = new JPanel();
         pn1.setLayout(new BoxLayout(pn1, BoxLayout.X_AXIS));
         pn1.setSize(this.getSize().width - 5, 20);
-        pn1.add(new JLabel("Check-in date (yyyy-MM-dd): "));
+        pn1.add(new JLabel("Thời gian nhận bàn (yyyy-MM-dd HH:mm): "));
         SpinnerDateModel dateModelCheckin = new SpinnerDateModel(new Date(), null, null, Calendar.MINUTE);
         dateCheckin = new JSpinner(dateModelCheckin);
         JSpinner.DateEditor editorCheckin = new JSpinner.DateEditor(dateCheckin, "yyyy-MM-dd HH:mm");
         dateCheckin.setEditor(editorCheckin);
         pn1.add(dateCheckin);
         pn1.add(Box.createRigidArea(new Dimension(10, 0)));
-        pn1.add(new JLabel("Check-out date (yyyy-MM-dd): "));
-        SpinnerDateModel dateModelCheckout = new SpinnerDateModel(new Date(), null, null, Calendar.MINUTE);
-        dateCheckout = new JSpinner(dateModelCheckout);
-        JSpinner.DateEditor editorCheckout = new JSpinner.DateEditor(dateCheckout, "yyyy-MM-dd HH:mm");
-        dateCheckout.setEditor(editorCheckout);
-        pn1.add(dateCheckout);
-        btnSearch = new JButton("Search");
+        pn1.add(new JLabel("Số lượng: "));
+        maxNumberExpect = new JTextField();
+        pn1.add(maxNumberExpect);
+        btnSearch = new JButton("Tìm kiếm");
         btnSearch.addActionListener(this);
         pn1.add(btnSearch);
         pnMain.add(pn1);
@@ -93,19 +80,29 @@ public class SearchFreeRoomFrm extends JFrame implements ActionListener {
                 if (row < tblResult.getRowCount() && row >= 0 && column < tblResult.getColumnCount() && column >= 0) {
                     try {
                         Date checkin = (Date) dateCheckin.getValue();
-                        Date checkout = (Date) dateCheckout.getValue();
-                        Room selectedRoom = listRoom.get(row);
+                        int maxNumber = Integer.parseInt(maxNumberExpect.getText());
+                        Calendar calendar = Calendar.getInstance();
+                        calendar.setTime(checkin);
+                        if(maxNumber <= 2){
+                            calendar.add(Calendar.HOUR_OF_DAY, 2);
+                        } else if (maxNumber <= 6){
+                            calendar.add(Calendar.HOUR_OF_DAY, 3);
+                        } else {
+                            calendar.add(Calendar.HOUR_OF_DAY, 4);
+                        }
+                        Date checkout = calendar.getTime();
+                        Table selectedTable = listTable.get(row);
                         
-                        // Create BookedRoom and add to Booking
-                        BookedRoom br = new BookedRoom();
-                        br.setRoom(selectedRoom);
+                        // Create BookedTable and add to Booking
+                        BookedTable br = new BookedTable();
+                        br.setTable(selectedTable);
                         br.setCheckin(checkin);
                         br.setCheckout(checkout);
-                        br.setPrice(selectedRoom.getPrice());
+                        br.setPrice(0);
                         br.setCheckedIn(false);
                         
                         Booking booking = new Booking();
-                        booking.getBookedRooms().add(br);
+                        booking.getBookedTables().add(br);
                         booking.setUser(user);
                         booking.setBookDate(new Date());
                         
@@ -132,23 +129,22 @@ public class SearchFreeRoomFrm extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         JButton btnClicked = (JButton) e.getSource();
         if (btnClicked.equals(btnSearch)) {
-            if ((dateCheckin.getValue() == null) || (dateCheckout.getValue() == null))
+            if ((dateCheckin.getValue() == null) || (maxNumberExpect.getText() == null))
                 return;
             try {
                 Date checkin = (Date) dateCheckin.getValue();
-                Date checkout = (Date) dateCheckout.getValue();
+                int maxNumber = Integer.parseInt(maxNumberExpect.getText());
                 
-                RoomDAO rd = new RoomDAO();
-                listRoom = rd.searchFreeRoom(checkin, checkout);
+                TableDAO rd = new TableDAO();
+                listTable = rd.searchFreeTable(checkin, maxNumber);
 
                 String[] columnNames = {"Id", "Name", "Type", "Price", "Description"};
-                String[][] value = new String[listRoom.size()][5];
-                for (int i = 0; i < listRoom.size(); i++) {
-                    value[i][0] = listRoom.get(i).getId() + "";
-                    value[i][1] = listRoom.get(i).getName();
-                    value[i][2] = listRoom.get(i).getType();
-                    value[i][3] = listRoom.get(i).getPrice() + "";
-                    value[i][4] = listRoom.get(i).getDes();
+                String[][] value = new String[listTable.size()][5];
+                for (int i = 0; i < listTable.size(); i++) {
+                    value[i][0] = listTable.get(i).getId() + "";
+                    value[i][1] = listTable.get(i).getName();
+                    value[i][3] = listTable.get(i).getMaxNumber() + "";
+                    value[i][4] = listTable.get(i).getDes();
                 }
                 DefaultTableModel tableModel = new DefaultTableModel(value, columnNames) {
                     @Override

@@ -10,10 +10,10 @@ public class Booking {
     private String note;
     private User user;
     private Client client;
-    private ArrayList<BookedRoom> bookedRooms;
+    private ArrayList<BookedTable> bookedTables;
 
     public Booking() {
-        this.bookedRooms = new ArrayList<BookedRoom>();
+        this.bookedTables = new ArrayList<>();
     }
 
     public int getId() {
@@ -64,15 +64,15 @@ public class Booking {
         this.note = note;
     }
 
-    public ArrayList<BookedRoom> getBookedRooms() {
-        return bookedRooms;
+    public ArrayList<BookedTable> getBookedTables() {
+        return bookedTables;
     }
 
-    public void setBookedRooms(ArrayList<BookedRoom> bookedRooms) {
-        this.bookedRooms = bookedRooms;
+    public void setBookedTables(ArrayList<BookedTable> bookedTables) {
+        this.bookedTables = bookedTables;
     }
 
-    public void addBookedRoom(BookedRoom bookedRoom) {
-        this.bookedRooms.add(bookedRoom);
+    public void addBookedTable(BookedTable bookedTable) {
+        this.bookedTables.add(bookedTable);
     }
 } 

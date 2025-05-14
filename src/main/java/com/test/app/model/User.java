@@ -7,16 +7,18 @@ public class User implements Serializable{
     private String password;
     private String name;
     private String position;
+    private String note;
      
     public User() {
         super();
     }
-    public User(String username, String password, String name, String position) {
+    public User(String username, String password, String name, String position, String note) {
         super();
         this.username = username;
         this.password = password;
         this.name = name;
         this.position = position;
+        this.note = note;
     }
     public int getId() {
         return id;
@@ -47,5 +49,11 @@ public class User implements Serializable{
     }
     public void setPosition(String position) {
         this.position = position;
+    }
+    public String getNote() {
+        return note;
+    }
+    public void setNote(String note) {
+        this.note = note;
     }
 }

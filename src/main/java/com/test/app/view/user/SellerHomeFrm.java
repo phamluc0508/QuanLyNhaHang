@@ -13,15 +13,14 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import com.test.app.model.User;
-import com.test.app.view.booking.SearchFreeRoomFrm;
-import com.test.app.view.room.ManageRoomFrm;
+import com.test.app.view.booking.SearchFreeTableFrm;
 
 public class SellerHomeFrm extends JFrame implements ActionListener {
-    private JButton btnBooking;
-    private User user;
+    private final JButton btnBooking;
+    private final User user;
 
     public SellerHomeFrm(User user) {
-        super("Seller home");
+        super("Lễ tân");
         this.user = user;
 
         JPanel listPane = new JPanel();
@@ -30,19 +29,19 @@ public class SellerHomeFrm extends JFrame implements ActionListener {
         JPanel lblPane = new JPanel();
         lblPane.setLayout(new BoxLayout(lblPane, BoxLayout.LINE_AXIS));
         lblPane.add(Box.createRigidArea(new Dimension(450, 0)));
-        JLabel lblUser = new JLabel("Loged in as: " + user.getName());
+        JLabel lblUser = new JLabel("Lễ tân: " + user.getName());
         lblUser.setAlignmentX(Component.RIGHT_ALIGNMENT);
         lblPane.add(lblUser);
         listPane.add(lblPane);
         listPane.add(Box.createRigidArea(new Dimension(0, 20)));
 
-        JLabel lblHome = new JLabel("Seller's home");
+        JLabel lblHome = new JLabel("Lễ tân");
         lblHome.setAlignmentX(Component.CENTER_ALIGNMENT);
         lblHome.setFont(lblHome.getFont().deriveFont(28.0f));
         listPane.add(lblHome);
         listPane.add(Box.createRigidArea(new Dimension(0, 20)));
 
-        btnBooking = new JButton("Booking management");
+        btnBooking = new JButton("Đặt bàn");
         btnBooking.setAlignmentX(Component.CENTER_ALIGNMENT);
         btnBooking.addActionListener(this);
         listPane.add(btnBooking);
@@ -57,8 +56,8 @@ public class SellerHomeFrm extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         // TODO Auto-generated method stub
         if ((e.getSource() instanceof JButton) &&
-                (((JButton) e.getSource()).equals(btnBooking))) {
-            (new SearchFreeRoomFrm(user)).setVisible(true);
+                (e.getSource().equals(btnBooking))) {
+            (new SearchFreeTableFrm(user)).setVisible(true);
             this.dispose();
         } else {
             JOptionPane.showMessageDialog(this,

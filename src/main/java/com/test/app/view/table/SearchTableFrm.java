@@ -1,4 +1,4 @@
-package com.test.app.view.room;
+package com.test.app.view.table;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -17,28 +17,28 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
-import com.test.app.dao.RoomDAO;
-import com.test.app.model.Room;
+import com.test.app.dao.TableDAO;
+import com.test.app.model.Table;
 import com.test.app.model.User;
  
-public class SearchRoomFrm extends JFrame implements ActionListener{
-    private ArrayList<Room> listRoom;
-    private JTextField txtKey;
-    private JButton btnSearch;
-    private JTable tblResult;
-    private SearchRoomFrm mainFrm;
+public class SearchTableFrm extends JFrame implements ActionListener{
+    private ArrayList<Table> listTable;
+    private final JTextField txtKey;
+    private final JButton btnSearch;
+    private final JTable tblResult;
+    private final SearchTableFrm mainFrm;
      
-    public SearchRoomFrm(User user, String title){
-        super("Search room to " + title);
+    public SearchTableFrm(User user, String title){
+        super("Tìm kiếm bàn để " + title);
         mainFrm = this;
-        listRoom = new ArrayList<Room>();
+        listTable = new ArrayList<>();
          
         JPanel pnMain = new JPanel();
         pnMain.setSize(this.getSize().width-5, this.getSize().height-20);       
         pnMain.setLayout(new BoxLayout(pnMain,BoxLayout.Y_AXIS));
         pnMain.add(Box.createRigidArea(new Dimension(0,10)));
          
-        JLabel lblHome = new JLabel("Search a room to " + title);
+        JLabel lblHome = new JLabel("Tìm kiếm bàn để " + title);
         lblHome.setAlignmentX(Component.CENTER_ALIGNMENT);  
         lblHome.setFont (lblHome.getFont ().deriveFont (20.0f));
         pnMain.add(lblHome);
@@ -47,10 +47,10 @@ public class SearchRoomFrm extends JFrame implements ActionListener{
         JPanel pn1 = new JPanel();
         pn1.setLayout(new BoxLayout(pn1,BoxLayout.X_AXIS));
         pn1.setSize(this.getSize().width-5, 20);
-        pn1.add(new JLabel("Room name: "));
+        pn1.add(new JLabel("Tên: "));
         txtKey = new JTextField();
         pn1.add(txtKey);
-        btnSearch = new JButton("Search");
+        btnSearch = new JButton("Tìm kiếm");
         btnSearch.addActionListener(this);
         pn1.add(btnSearch);
         pnMain.add(pn1);
@@ -73,13 +73,13 @@ public class SearchRoomFrm extends JFrame implements ActionListener{
                 // *Checking the row or column is valid or not
                 if (row < tblResult.getRowCount() && row >= 0 && 
                             column < tblResult.getColumnCount() && column >= 0) {
-                    if(title.equals("edit")){   
-                        (new EditRoomFrm(user,
-                                         listRoom.get(row))).setVisible(true);
+                    if(title.equals("sửa")){
+                        (new EditTableFrm(user,
+                                listTable.get(row))).setVisible(true);
                     }
                     else{
-                        (new DeleteRoomFrm(user,
-                                         listRoom.get(row))).setVisible(true);
+                        (new DeleteTableFrm(user,
+                                listTable.get(row))).setVisible(true);
                     }
                     mainFrm.dispose();
                 }
@@ -100,20 +100,18 @@ public class SearchRoomFrm extends JFrame implements ActionListener{
         // TODO Auto-generated method stub
         JButton btnClicked = (JButton)e.getSource();
         if(btnClicked.equals(btnSearch)){
-            if((txtKey.getText() == null)||(txtKey.getText().length() == 0))
+            if((txtKey.getText() == null)||(txtKey.getText().isEmpty()))
                 return;
-            RoomDAO rd = new RoomDAO();
-            listRoom = rd.searchRoom(txtKey.getText().trim());
+            TableDAO rd = new TableDAO();
+            listTable = rd.searchTable(txtKey.getText().trim());
  
-            String[] columnNames = {"Id", "Name", "Type", "Price",
-                                           "Description"};
-            String[][] value = new String[listRoom.size()][5];
-            for(int i=0; i<listRoom.size(); i++){
-                value[i][0] = listRoom.get(i).getId() +"";
-                value[i][1] = listRoom.get(i).getName();
-                value[i][2] = listRoom.get(i).getType();
-                value[i][3] = listRoom.get(i).getPrice() +"";
-                value[i][4] = listRoom.get(i).getDes();
+            String[] columnNames = {"Id", "Tên", "Số lượng tối đa", "Mô tả"};
+            String[][] value = new String[listTable.size()][5];
+            for(int i=0; i<listTable.size(); i++){
+                value[i][0] = listTable.get(i).getId() +"";
+                value[i][1] = listTable.get(i).getName();
+                value[i][2] = listTable.get(i).getMaxNumber() +"";
+                value[i][3] = listTable.get(i).getDes();
             }
             DefaultTableModel tableModel = 
                        new DefaultTableModel(value, columnNames) {

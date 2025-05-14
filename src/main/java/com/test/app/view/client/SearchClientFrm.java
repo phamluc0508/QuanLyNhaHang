@@ -1,4 +1,4 @@
-package com.test.app.view.booking;
+package com.test.app.view.client;
 
 import java.awt.Component;
 import java.awt.Dimension;
@@ -23,30 +23,31 @@ import com.test.app.dao.ClientDAO;
 import com.test.app.model.Booking;
 import com.test.app.model.Client;
 import com.test.app.model.User;
-import com.test.app.view.client.AddClientFrm;
+import com.test.app.view.booking.ConfirmFrm;
 
 public class SearchClientFrm extends JFrame implements ActionListener {
     private ArrayList<Client> listClient;
-    private JTextField txtKey;
-    private JButton btnSearch, btnAdd;
-    private JTable tblResult;
-    private SearchClientFrm mainFrm;
-    private User user;
-    private Booking booking;
+    private final JTextField txtKey;
+    private final JButton btnSearch;
+    private final JButton btnAdd;
+    private final JTable tblResult;
+    private final SearchClientFrm mainFrm;
+    private final User user;
+    private final Booking booking;
 
     public SearchClientFrm(User user, Booking booking) {
-        super("Search client");
+        super("Tìm kiếm khách hàng");
         this.user = user;
         this.booking = booking;
         mainFrm = this;
-        listClient = new ArrayList<Client>();
+        listClient = new ArrayList<>();
 
         JPanel pnMain = new JPanel();
         pnMain.setSize(this.getSize().width - 5, this.getSize().height - 20);
         pnMain.setLayout(new BoxLayout(pnMain, BoxLayout.Y_AXIS));
         pnMain.add(Box.createRigidArea(new Dimension(0, 10)));
 
-        JLabel lblHome = new JLabel("Search client");
+        JLabel lblHome = new JLabel("Tìm kiếm khách hàng");
         lblHome.setAlignmentX(Component.CENTER_ALIGNMENT);
         lblHome.setFont(lblHome.getFont().deriveFont(20.0f));
         pnMain.add(lblHome);
@@ -55,13 +56,13 @@ public class SearchClientFrm extends JFrame implements ActionListener {
         JPanel pn1 = new JPanel();
         pn1.setLayout(new BoxLayout(pn1, BoxLayout.X_AXIS));
         pn1.setSize(this.getSize().width - 5, 20);
-        pn1.add(new JLabel("Client name: "));
+        pn1.add(new JLabel("Tên: "));
         txtKey = new JTextField();
         pn1.add(txtKey);
-        btnSearch = new JButton("Search");
+        btnSearch = new JButton("Tìm kiếm");
         btnSearch.addActionListener(this);
         pn1.add(btnSearch);
-        btnAdd = new JButton("Add");
+        btnAdd = new JButton("Thêm");
         btnAdd.addActionListener(this);
         pn1.add(btnAdd);
         pnMain.add(pn1);
@@ -103,21 +104,19 @@ public class SearchClientFrm extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         JButton btnClicked = (JButton) e.getSource();
         if (btnClicked.equals(btnSearch)) {
-            if ((txtKey.getText() == null) || (txtKey.getText().length() == 0))
+            if ((txtKey.getText() == null) || (txtKey.getText().isEmpty()))
                 return;
             ClientDAO cd = new ClientDAO();
             listClient = cd.searchClient(txtKey.getText().trim());
 
-            String[] columnNames = {"Id", "Name", "ID Card", "Address", "Tel", "Email", "Note"};
+            String[] columnNames = {"Id", "Tên", "Địa chỉ", "Số điện thoại", "Email"};
             String[][] value = new String[listClient.size()][7];
             for (int i = 0; i < listClient.size(); i++) {
                 value[i][0] = listClient.get(i).getId() + "";
                 value[i][1] = listClient.get(i).getName();
-                value[i][2] = listClient.get(i).getIdCard();
-                value[i][3] = listClient.get(i).getAddress();
-                value[i][4] = listClient.get(i).getTel();
-                value[i][5] = listClient.get(i).getEmail();
-                value[i][6] = listClient.get(i).getNote();
+                value[i][2] = listClient.get(i).getAddress();
+                value[i][3] = listClient.get(i).getTel();
+                value[i][4] = listClient.get(i).getEmail();
             }
             DefaultTableModel tableModel = new DefaultTableModel(value, columnNames) {
                 @Override

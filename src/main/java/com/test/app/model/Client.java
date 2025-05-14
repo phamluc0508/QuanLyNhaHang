@@ -3,23 +3,19 @@ package com.test.app.model;
 public class Client {
     private int id;
     private String name;
-    private String idCard;
     private String address;
     private String tel;
     private String email;
-    private String note;
 
     public Client() {
     }
 
-    public Client(int id, String name, String idCard, String address, String tel, String email, String note) {
+    public Client(int id, String name, String address, String tel, String email) {
         this.id = id;
         this.name = name;
-        this.idCard = idCard;
         this.address = address;
         this.tel = tel;
         this.email = email;
-        this.note = note;
     }
 
     public int getId() {
@@ -36,14 +32,6 @@ public class Client {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getIdCard() {
-        return idCard;
-    }
-
-    public void setIdCard(String idCard) {
-        this.idCard = idCard;
     }
 
     public String getAddress() {
@@ -68,13 +56,5 @@ public class Client {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getNote() {
-        return note;
-    }
-
-    public void setNote(String note) {
-        this.note = note;
     }
 } 

@@ -9,11 +9,10 @@ public class ClientDAO extends DAO{
      
     /**
      * search all clients in the tblClient whose name contains the @key
-     * @param key
      * @return list of client whose name contains the @key
      */
     public ArrayList<Client> searchClient(String key){
-        ArrayList<Client> result = new ArrayList<Client>();
+        ArrayList<Client> result = new ArrayList<>();
         String sql = "SELECT * FROM tblclient WHERE name LIKE ?";
         try{
             PreparedStatement ps = con.prepareStatement(sql);
@@ -24,11 +23,9 @@ public class ClientDAO extends DAO{
                 Client client = new Client();
                 client.setId(rs.getInt("id"));
                 client.setName(rs.getString("name"));
-                client.setIdCard(rs.getString("idcard"));
                 client.setAddress(rs.getString("address"));
                 client.setTel(rs.getString("tel"));
                 client.setEmail(rs.getString("email"));
-                client.setNote(rs.getString("note"));
                 result.add(client);
             }
         }catch(Exception e){
@@ -39,19 +36,16 @@ public class ClientDAO extends DAO{
      
     /**
      * add a new @client into the DB
-     * @param client
      */
     public Client addClient(Client client){
-        String sql = "INSERT INTO tblclient(name, idcard, address, tel, email, note) VALUES(?,?,?,?,?,?)";
+        String sql = "INSERT INTO tblclient(name, address, tel, email) VALUES(?,?,?,?)";
         try{
             PreparedStatement ps = con.prepareStatement(sql,
                               Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, client.getName());
-            ps.setString(2, client.getIdCard());
-            ps.setString(3, client.getAddress());
-            ps.setString(4, client.getTel());
-            ps.setString(5, client.getEmail());
-            ps.setString(6, client.getNote());
+            ps.setString(2, client.getAddress());
+            ps.setString(3, client.getTel());
+            ps.setString(4, client.getEmail());
  
             ps.executeUpdate();
              

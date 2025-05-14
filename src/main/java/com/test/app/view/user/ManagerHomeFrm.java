@@ -13,14 +13,14 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import com.test.app.model.User;
-import com.test.app.view.room.ManageRoomFrm;
+import com.test.app.view.table.ManageTableFrm;
 
 public class ManagerHomeFrm extends JFrame implements ActionListener {
-    private JButton btnHotel, btnRoom, btnStat;
-    private User user;
+    private final JButton btnTable;
+    private final User user;
 
     public ManagerHomeFrm(User user) {
-        super("Manager home");
+        super("Quan lý");
         this.user = user;
 
         JPanel listPane = new JPanel();
@@ -29,34 +29,29 @@ public class ManagerHomeFrm extends JFrame implements ActionListener {
         JPanel lblPane = new JPanel();
         lblPane.setLayout(new BoxLayout(lblPane, BoxLayout.LINE_AXIS));
         lblPane.add(Box.createRigidArea(new Dimension(450, 0)));
-        JLabel lblUser = new JLabel("Loged in as: " + user.getName());
+        JLabel lblUser = new JLabel("Tên quản lý: " + user.getName());
         lblUser.setAlignmentX(Component.RIGHT_ALIGNMENT);
         lblPane.add(lblUser);
         listPane.add(lblPane);
         listPane.add(Box.createRigidArea(new Dimension(0, 20)));
 
-        JLabel lblHome = new JLabel("Manager's home");
+        JLabel lblHome = new JLabel("Quản lý");
         lblHome.setAlignmentX(Component.CENTER_ALIGNMENT);
         lblHome.setFont(lblHome.getFont().deriveFont(28.0f));
         listPane.add(lblHome);
         listPane.add(Box.createRigidArea(new Dimension(0, 20)));
 
-        btnHotel = new JButton("Hotel management");
+        JButton btnHotel = new JButton("Quản lý nhà hàng");
         btnHotel.setAlignmentX(Component.CENTER_ALIGNMENT);
         btnHotel.addActionListener(this);
         listPane.add(btnHotel);
         listPane.add(Box.createRigidArea(new Dimension(0, 10)));
 
-        btnRoom = new JButton("Room management");
-        btnRoom.setAlignmentX(Component.CENTER_ALIGNMENT);
-        btnRoom.addActionListener(this);
-        listPane.add(btnRoom);
+        btnTable = new JButton("Quản lý bàn");
+        btnTable.setAlignmentX(Component.CENTER_ALIGNMENT);
+        btnTable.addActionListener(this);
+        listPane.add(btnTable);
         listPane.add(Box.createRigidArea(new Dimension(0, 10)));
-
-        btnStat = new JButton("View statistic");
-        btnStat.setAlignmentX(Component.CENTER_ALIGNMENT);
-        btnStat.addActionListener(this);
-        listPane.add(btnStat);
 
         this.setSize(600, 300);
         this.setLocation(200, 10);
@@ -68,8 +63,8 @@ public class ManagerHomeFrm extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         // TODO Auto-generated method stub
         if ((e.getSource() instanceof JButton) &&
-                (((JButton) e.getSource()).equals(btnRoom))) {
-            (new ManageRoomFrm(user)).setVisible(true);
+                (e.getSource().equals(btnTable))) {
+            (new ManageTableFrm(user)).setVisible(true);
             this.dispose();
         } else {
             JOptionPane.showMessageDialog(this,

@@ -1,21 +1,19 @@
 package com.test.app.model;
 import java.io.Serializable;
  
-public class Room  implements Serializable{
+public class Table implements Serializable{
     private int id;
     private String name;
-    private String type;
-    private float price;
+    private int maxNumber;
     private String des;
      
-    public Room() {
+    public Table() {
         super();
     }   
-    public Room(String name, String type, float price, String des) {
+    public Table(String name, int maxNumber, String des) {
         super();
         this.name = name;
-        this.type = type;
-        this.price = price;
+        this.maxNumber = maxNumber;
         this.des = des;
     }
     public int getId() {
@@ -30,17 +28,11 @@ public class Room  implements Serializable{
     public void setName(String name) {
         this.name = name;
     }
-    public String getType() {
-        return type;
+    public int getMaxNumber() {
+        return maxNumber;
     }
-    public void setType(String type) {
-        this.type = type;
-    }
-    public float getPrice() {
-        return price;
-    }
-    public void setPrice(float price) {
-        this.price = price;
+    public void setMaxNumber(int maxNumber) {
+        this.maxNumber = maxNumber;
     }
     public String getDes() {
         return des;

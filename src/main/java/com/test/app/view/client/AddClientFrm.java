@@ -21,14 +21,18 @@ import com.test.app.view.user.SellerHomeFrm;
 import com.test.app.model.Booking;
 
 public class AddClientFrm extends JFrame implements ActionListener {
-    private Client client;
-    private JTextField txtName, txtTel, txtIdCard, txtAddress, txtEmail, txtNote;
-    private JButton btnCreate, btnCancel;
-    private User user;
-    private Booking booking;
+    private final Client client;
+    private final JTextField txtName;
+    private final JTextField txtTel;
+    private final JTextField txtAddress;
+    private final JTextField txtEmail;
+    private final JButton btnCreate;
+    private final JButton btnCancel;
+    private final User user;
+    private final Booking booking;
 
     public AddClientFrm(User user, Booking booking) {
-        super("Add a client");
+        super("Thêm mới khách hàng");
         this.user = user;
         this.booking = booking;
         this.client = new Client();
@@ -38,7 +42,7 @@ public class AddClientFrm extends JFrame implements ActionListener {
         pnMain.setLayout(new BoxLayout(pnMain, BoxLayout.Y_AXIS));
         pnMain.add(Box.createRigidArea(new Dimension(0, 10)));
 
-        JLabel lblHome = new JLabel("Add a client");
+        JLabel lblHome = new JLabel("Thêm mới khách hàng");
         lblHome.setAlignmentX(Component.CENTER_ALIGNMENT);
         lblHome.setFont(lblHome.getFont().deriveFont(20.0f));
         pnMain.add(lblHome);
@@ -47,26 +51,20 @@ public class AddClientFrm extends JFrame implements ActionListener {
         txtName = new JTextField(15);
         txtAddress = new JTextField(15);
         txtEmail = new JTextField(15);
-        txtIdCard = new JTextField(15);
         txtTel = new JTextField(15);
-        txtNote = new JTextField(15);
-        btnCreate = new JButton("Create");
-        btnCancel = new JButton("Cancel");
+        btnCreate = new JButton("Lưu");
+        btnCancel = new JButton("Hủy");
 
         JPanel content = new JPanel();
         content.setLayout(new GridLayout(7, 2));
-        content.add(new JLabel("Name:"));
+        content.add(new JLabel("Tên:"));
         content.add(txtName);
-        content.add(new JLabel("ID Card:"));
-        content.add(txtIdCard);
-        content.add(new JLabel("Address:"));
+        content.add(new JLabel("Địa chỉ:"));
         content.add(txtAddress);
-        content.add(new JLabel("Tel:"));
+        content.add(new JLabel("Số điện thoại:"));
         content.add(txtTel);
         content.add(new JLabel("Email:"));
         content.add(txtEmail);
-        content.add(new JLabel("Note:"));
-        content.add(txtNote);
         content.add(btnCreate);
         content.add(btnCancel);
         pnMain.add(content);
@@ -94,17 +92,15 @@ public class AddClientFrm extends JFrame implements ActionListener {
     private void btnCreateClick(Boolean isCreate) {
         if (isCreate) {
             client.setName(txtName.getText());
-            client.setIdCard(txtIdCard.getText());
             client.setAddress(txtAddress.getText());
             client.setTel(txtTel.getText());
             client.setEmail(txtEmail.getText());
-            client.setNote(txtNote.getText());
 
             ClientDAO cd = new ClientDAO();
             Client c = cd.addClient(client);
             if (c != null) {
                 JOptionPane.showMessageDialog(this,
-                        "The client is succeffully created!");
+                        "Thêm khách hàng thành công!");
                 booking.setClient(c);
                 (new ConfirmFrm(user, booking)).setVisible(true);
                 this.dispose();

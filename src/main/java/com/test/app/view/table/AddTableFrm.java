@@ -1,4 +1,4 @@
-package com.test.app.view.booking;
+package com.test.app.view.table;
 
 import java.awt.Component;
 import java.awt.Dimension;
@@ -13,49 +13,49 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import com.test.app.dao.RoomDAO;
-import com.test.app.model.Room;
+import com.test.app.dao.TableDAO;
+import com.test.app.model.Table;
 import com.test.app.model.User;
 import com.test.app.view.user.ManagerHomeFrm;
 
-public class AddRoomFrm extends JFrame implements ActionListener {
-    private Room room;
-    private JTextField txtName, txtType, txtPrice, txtDes;
-    private JButton btnCreate, btnCancel;
-    private User user;
+public class AddTableFrm extends JFrame implements ActionListener {
+    private final Table table;
+    private final JTextField txtName;
+    private final JTextField txtMaxNumber;
+    private final JTextField txtDes;
+    private final JButton btnCreate;
+    private final JButton btnCancel;
+    private final User user;
 
-    public AddRoomFrm(User user) {
-        super("Add a room");
+    public AddTableFrm(User user) {
+        super("Thêm bài");
         this.user = user;
-        this.room = new Room();
+        this.table = new Table();
 
         JPanel pnMain = new JPanel();
         pnMain.setSize(this.getSize().width - 5, this.getSize().height - 20);
         pnMain.setLayout(new BoxLayout(pnMain, BoxLayout.Y_AXIS));
         pnMain.add(Box.createRigidArea(new Dimension(0, 10)));
 
-        JLabel lblHome = new JLabel("Edit a room");
+        JLabel lblHome = new JLabel("Thêm bàn");
         lblHome.setAlignmentX(Component.CENTER_ALIGNMENT);
         lblHome.setFont(lblHome.getFont().deriveFont(20.0f));
         pnMain.add(lblHome);
         pnMain.add(Box.createRigidArea(new Dimension(0, 20)));
 
         txtName = new JTextField(15);
-        txtType = new JTextField(15);
-        txtPrice = new JTextField(15);
+        txtMaxNumber = new JTextField(15);
         txtDes = new JTextField(15);
-        btnCreate = new JButton("Create");
-        btnCancel = new JButton("Cancel");
+        btnCreate = new JButton("Lưu");
+        btnCancel = new JButton("Hủy");
 
         JPanel content = new JPanel();
         content.setLayout(new GridLayout(6, 2));
-        content.add(new JLabel("Room name:"));
+        content.add(new JLabel("Tên:"));
         content.add(txtName);
-        content.add(new JLabel("Type:"));
-        content.add(txtType);
-        content.add(new JLabel("Price:"));
-        content.add(txtPrice);
-        content.add(new JLabel("Description:"));
+        content.add(new JLabel("Số lượng tối đa:"));
+        content.add(txtMaxNumber);
+        content.add(new JLabel("Mô tả:"));
         content.add(txtDes);
         content.add(btnCreate);
         content.add(btnCancel);
@@ -83,15 +83,14 @@ public class AddRoomFrm extends JFrame implements ActionListener {
 
     private void btnCreateClick(Boolean isCreate) {
         if (isCreate) {
-            room.setName(txtName.getText());
-            room.setType(txtType.getText());
-            room.setPrice(Float.parseFloat(txtPrice.getText()));
-            room.setDes(txtDes.getText());
+            table.setName(txtName.getText());
+            table.setMaxNumber(Integer.parseInt(txtMaxNumber.getText()));
+            table.setDes(txtDes.getText());
 
-            RoomDAO rd = new RoomDAO();
-            if (rd.createRoom(room)) {
+            TableDAO rd = new TableDAO();
+            if (rd.createTable(table)) {
                 JOptionPane.showMessageDialog(this,
-                        "The room is succeffully created!");
+                        "Thêm bàn thành công!");
                 (new ManagerHomeFrm(user)).setVisible(true);
                 this.dispose();
             }

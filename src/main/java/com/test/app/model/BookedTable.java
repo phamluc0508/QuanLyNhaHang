@@ -2,17 +2,16 @@ package com.test.app.model;
 
 import java.util.Date;
 
-public class BookedRoom {
+public class BookedTable {
     private int id;
-    private Room room;
+    private Table table;
     private Date checkin;
     private Date checkout;
     private float price;
-    private float amount;
     private boolean isCheckedIn;
     private String note;
 
-    public BookedRoom() {
+    public BookedTable() {
     }
 
     public int getId() {
@@ -23,12 +22,12 @@ public class BookedRoom {
         this.id = id;
     }
 
-    public Room getRoom() {
-        return room;
+    public Table getTable() {
+        return table;
     }
 
-    public void setRoom(Room room) {
-        this.room = room;
+    public void setTable(Table table) {
+        this.table = table;
     }
 
     public Date getCheckin() {
@@ -53,14 +52,6 @@ public class BookedRoom {
 
     public void setPrice(float price) {
         this.price = price;
-    }
-
-    public float getAmount() {
-        return amount;
-    }
-
-    public void setAmount(float amount) {
-        this.amount = amount;
     }
 
     public boolean isCheckedIn() {
