@@ -23,7 +23,7 @@ public class BookingDAO extends DAO {
      */
     public boolean addBooking(Booking b) {
         String sqlAddBooking = "INSERT INTO tblbooking(creatorid, clientid, bookingdate, totalamount, note) VALUES(?,?,?,?,?)";
-        String sqlAddBookedTable = "INSERT INTO tblbookedtable(bookingid, tableid, checkin, checkout, price, ischeckin)  VALUES(?,?,?,?,?,?)";
+        String sqlAddBookedTable = "INSERT INTO tblbookedtable(bookingid, tableid, checkin, checkout, price, ischeckedin)  VALUES(?,?,?,?,?,?)";
         String sqlCheckBookedTable = "SELECT * FROM tblbookedtable WHERE tableid = ? AND checkout > ? AND checkin < ?";
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         boolean result = true;
@@ -82,7 +82,7 @@ public class BookingDAO extends DAO {
                 }
             }
 
-            // con.commit();//set this line into comment in JUnit test mode
+             con.commit();//set this line into comment in JUnit test mode
         } catch (Exception e) {
             result = false;
             try {
@@ -93,7 +93,7 @@ public class BookingDAO extends DAO {
             e.printStackTrace();
         } finally {
             try {
-                // con.setAutoCommit(true);//set this line into comment in JUnit test mode
+                 con.setAutoCommit(true);//set this line into comment in JUnit test mode
             } catch (Exception ex) {
                 result = false;
                 ex.printStackTrace();

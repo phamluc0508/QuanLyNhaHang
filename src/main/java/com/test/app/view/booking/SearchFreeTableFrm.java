@@ -138,13 +138,13 @@ public class SearchFreeTableFrm extends JFrame implements ActionListener {
                 TableDAO rd = new TableDAO();
                 listTable = rd.searchFreeTable(checkin, maxNumber);
 
-                String[] columnNames = {"Id", "Name", "Type", "Price", "Description"};
+                String[] columnNames = {"Id", "Tên", "Số lượng tối đa", "Mô tả"};
                 String[][] value = new String[listTable.size()][5];
                 for (int i = 0; i < listTable.size(); i++) {
                     value[i][0] = listTable.get(i).getId() + "";
                     value[i][1] = listTable.get(i).getName();
-                    value[i][3] = listTable.get(i).getMaxNumber() + "";
-                    value[i][4] = listTable.get(i).getDes();
+                    value[i][2] = listTable.get(i).getMaxNumber() + "";
+                    value[i][3] = listTable.get(i).getDes();
                 }
                 DefaultTableModel tableModel = new DefaultTableModel(value, columnNames) {
                     @Override
