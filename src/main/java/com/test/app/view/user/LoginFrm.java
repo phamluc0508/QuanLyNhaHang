@@ -87,9 +87,4 @@ public class LoginFrm extends JFrame implements ActionListener{
             }
         }
     }
-     
-    public static void main(String[] args) {
-        LoginFrm myFrame = new LoginFrm();      
-        myFrame.setVisible(true);   
-    }
 }
