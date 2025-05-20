@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+
 import com.test.app.model.Table;
  
 public class TableDAO extends DAO{
@@ -44,6 +45,10 @@ public class TableDAO extends DAO{
      * create the @table
      */
     public boolean createTable(Table tb){
+        if(findTableByName(tb.getName())){
+            throw new RuntimeException("Tên bàn đã tồn tại");
+        }
+
         String sql = "INSERT INTO tbltable (name, maxnumber, des) VALUES (?, ?, ?)";
         try{
             PreparedStatement ps = con.prepareStatement(sql,
@@ -51,12 +56,12 @@ public class TableDAO extends DAO{
             ps.setString(1, tb.getName());
             ps.setInt(2, tb.getMaxNumber());
             ps.setString(3, tb.getDes());
- 
+
             ps.executeUpdate();
         }catch(Exception e){
             e.printStackTrace();
             return false;
-        }       
+        }
         return true;
     }
  
@@ -64,6 +69,15 @@ public class TableDAO extends DAO{
      * update the @table
      */
     public boolean updateTable(Table tb){
+
+        if (findTableIsUsedById(tb.getId())){
+            throw new RuntimeException("Bàn đang được dùng");
+        }
+
+        if (findTableByIdNotInAndName(tb.getId(), tb.getName())){
+            throw new RuntimeException("Tên bàn đã tồn tại");
+        }
+
         String sql = "UPDATE tbltable SET name=?, maxNumber=?, des=? WHERE id=?";
         try{
             PreparedStatement ps = con.prepareStatement(sql);
@@ -84,6 +98,11 @@ public class TableDAO extends DAO{
      * delete the @table
      */
     public boolean deleteTable(Table tb){
+
+        if (findTableIsUsedById(tb.getId())){
+            throw new RuntimeException("Bàn đang được dùng");
+        }
+
         String sql = "DELETE FROM tbltable WHERE id=?";
         try{
             PreparedStatement ps = con.prepareStatement(sql);
@@ -95,6 +114,58 @@ public class TableDAO extends DAO{
             return false;
         }       
         return true;
+    }
+
+    private boolean findTableByName(String name){
+        String sql = "SELECT * FROM tbltable WHERE name = ?";
+        Table tb = new Table();
+        try{
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, name);
+            ResultSet rs = ps.executeQuery();
+
+            return rs.next();
+        } catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    private boolean findTableByIdNotInAndName(int id, String name){
+        String sql = "SELECT 1 FROM tbltable WHERE id <> ? and name = ? LIMIT 1";
+        Table tb = new Table();
+        try{
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            ps.setString(2, name);
+            ResultSet rs = ps.executeQuery();
+
+            return rs.next();
+        } catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    private boolean findTableIsUsedById(int id){
+        String sql = """
+                SELECT 1 FROM tblbookedtable
+                  WHERE tableid = ?
+                    AND (
+                          (checkin <= NOW() AND checkout >= NOW())
+                          OR (checkin > NOW())
+                        )
+                  LIMIT 1
+                """;
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            return rs.next();
+        } catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
     }
 
     public ArrayList<Table> searchFreeTable(Date checkin, int maxNumber){

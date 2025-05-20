@@ -88,12 +88,17 @@ public class AddTableFrm extends JFrame implements ActionListener {
             table.setDes(txtDes.getText());
 
             TableDAO rd = new TableDAO();
-            if (rd.createTable(table)) {
-                JOptionPane.showMessageDialog(this,
-                        "Thêm bàn thành công!");
-                (new ManagerHomeFrm(user)).setVisible(true);
-                this.dispose();
-            }
+            try {
+                if (rd.createTable(table)) {
+                    JOptionPane.showMessageDialog(this,
+                            "Thêm bàn thành công!");
+                    (new ManagerHomeFrm(user)).setVisible(true);
+                    this.dispose();
+                }
+            } catch (RuntimeException e){
+            JOptionPane.showMessageDialog(this,
+                    e.getMessage(), "Lỗi", JOptionPane.ERROR_MESSAGE);
+        }
         } else {
             (new ManagerHomeFrm(user)).setVisible(true);
             this.dispose();

@@ -99,11 +99,16 @@ public class EditTableFrm extends JFrame implements ActionListener{
         table.setDes(txtDes.getText());
          
         TableDAO rd = new TableDAO();
-        if(rd.updateTable(table)) {
-            JOptionPane.showMessageDialog(this, 
-                        "The table is successfully updated!");
-            (new ManagerHomeFrm(user)).setVisible(true);
-            this.dispose();
-        }       
+        try {
+            if (rd.updateTable(table)) {
+                JOptionPane.showMessageDialog(this,
+                        "Chỉnh sửa bàn thành công!");
+                (new ManagerHomeFrm(user)).setVisible(true);
+                this.dispose();
+            }
+        } catch (RuntimeException e){
+            JOptionPane.showMessageDialog(this,
+                    e.getMessage(), "Lỗi", JOptionPane.ERROR_MESSAGE);
+        }
     }
 }

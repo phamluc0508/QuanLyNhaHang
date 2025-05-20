@@ -96,15 +96,19 @@ public class DeleteTableFrm extends JFrame implements ActionListener{
      
     private void btnDelClick(Boolean isDelete){
         TableDAO rd = new TableDAO();
-        if(isDelete){
-            if(rd.deleteTable(table)) {
-                JOptionPane.showMessageDialog(this, 
-                        "The table is successfully deleted!");
-                (new ManagerHomeFrm(user)).setVisible(true);
-                this.dispose();
+        if (isDelete) {
+            try {
+                if (rd.deleteTable(table)) {
+                    JOptionPane.showMessageDialog(this,
+                            "Xóa bàn thành công!");
+                    (new ManagerHomeFrm(user)).setVisible(true);
+                    this.dispose();
+                }
+            } catch (RuntimeException e){
+                JOptionPane.showMessageDialog(this,
+                        e.getMessage(), "Lỗi", JOptionPane.ERROR_MESSAGE);
             }
-        }
-        else{
+        } else {
             (new ManagerHomeFrm(user)).setVisible(true);
             this.dispose();
         }

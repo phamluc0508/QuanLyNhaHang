@@ -10,8 +10,6 @@ public class FlywayConfig {
     public static void migrate() {
         Flyway flyway = Flyway.configure()
                 .dataSource(URL, USER, PASSWORD)
-                .locations("classpath:db/migration")
-                .baselineOnMigrate(true)  // Tự động baseline khi làm việc với DB có sẵn
                 .load();
 
         // Thực hiện migration
