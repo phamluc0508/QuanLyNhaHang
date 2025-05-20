@@ -98,6 +98,8 @@ public class AddTableFrm extends JFrame implements ActionListener {
             } catch (RuntimeException e){
             JOptionPane.showMessageDialog(this,
                     e.getMessage(), "Lỗi", JOptionPane.ERROR_MESSAGE);
+                (new ManagerHomeFrm(user)).setVisible(true);
+                this.dispose();
         }
         } else {
             (new ManagerHomeFrm(user)).setVisible(true);
