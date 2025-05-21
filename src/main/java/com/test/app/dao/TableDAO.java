@@ -180,7 +180,10 @@ public class TableDAO extends DAO{
         }
         Date checkout = calendar.getTime();
         ArrayList<Table> result = new ArrayList<>();
-        String sql = "SELECT * FROM tbltable WHERE maxnumber >= ? and id NOT IN (SELECT tableid FROM tblbookedtable WHERE checkout > ? AND checkin < ?)";
+        String sql = """
+        SELECT * FROM tbltable WHERE maxnumber >= ?
+        and id NOT IN (SELECT tableid FROM tblbookedtable WHERE checkout > ? AND checkin < ?)
+        """;
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         try{
             PreparedStatement ps = con.prepareStatement(sql);

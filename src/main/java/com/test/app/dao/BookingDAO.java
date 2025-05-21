@@ -22,9 +22,15 @@ public class BookingDAO extends DAO {
      *
      */
     public boolean addBooking(Booking b) {
-        String sqlAddBooking = "INSERT INTO tblbooking(creatorid, clientid, bookingdate, totalamount, note) VALUES(?,?,?,?,?)";
-        String sqlAddBookedTable = "INSERT INTO tblbookedtable(bookingid, tableid, checkin, checkout, price, ischeckedin)  VALUES(?,?,?,?,?,?)";
-        String sqlCheckBookedTable = "SELECT * FROM tblbookedtable WHERE tableid = ? AND checkout > ? AND checkin < ?";
+        String sqlAddBooking = """
+                INSERT INTO tblbooking(creatorid, clientid, bookingdate, totalamount, note) VALUES(?,?,?,?,?)
+                """;
+        String sqlAddBookedTable = """
+        INSERT INTO tblbookedtable(bookingid, tableid, checkin, checkout, price, ischeckedin)  VALUES(?,?,?,?,?,?)
+        """;
+        String sqlCheckBookedTable = """
+                SELECT * FROM tblbookedtable WHERE tableid = ? AND checkout > ? AND checkin < ?
+                """;
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         boolean result = true;
         try {
