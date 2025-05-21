@@ -85,7 +85,7 @@ public class SearchClientFrm extends JFrame implements ActionListener {
                     booking.setClient(selectedClient);
                     
                     // Open ConfirmFrm
-                    (new ConfirmFrm(user, booking)).setVisible(true);
+                    new ConfirmFrm(user, booking).setVisible(true);
                     mainFrm.dispose();
                 }
             }

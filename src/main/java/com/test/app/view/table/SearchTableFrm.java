@@ -74,12 +74,10 @@ public class SearchTableFrm extends JFrame implements ActionListener{
                 if (row < tblResult.getRowCount() && row >= 0 && 
                             column < tblResult.getColumnCount() && column >= 0) {
                     if(title.equals("sửa")){
-                        (new EditTableFrm(user,
-                                listTable.get(row))).setVisible(true);
+                        new EditTableFrm(user, listTable.get(row)).setVisible(true);
                     }
                     else{
-                        (new DeleteTableFrm(user,
-                                listTable.get(row))).setVisible(true);
+                        new DeleteTableFrm(user, listTable.get(row)).setVisible(true);
                     }
                     mainFrm.dispose();
                 }

@@ -102,11 +102,11 @@ public class AddClientFrm extends JFrame implements ActionListener {
                 JOptionPane.showMessageDialog(this,
                         "Thêm khách hàng thành công!");
                 booking.setClient(c);
-                (new ConfirmFrm(user, booking)).setVisible(true);
+                new ConfirmFrm(user, booking).setVisible(true);
                 this.dispose();
             }
         } else {
-            (new SellerHomeFrm(user)).setVisible(true);
+            new SellerHomeFrm(user).setVisible(true);
             this.dispose();
         }
     }

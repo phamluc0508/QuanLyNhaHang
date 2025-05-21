@@ -21,7 +21,7 @@ public class ManagerHomeFrm extends JFrame implements ActionListener {
     private final User user;
 
     public ManagerHomeFrm(User user) {
-        super("Quan lý");
+        super("Quản lý");
         this.user = user;
 
         JPanel listPane = new JPanel();

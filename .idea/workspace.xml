@@ -6,18 +6,16 @@
   <component name="ChangeListManager">
     <list default="true" id="7426f04a-6f59-4bb8-b2df-621916cb207d" name="Changes" comment="refactor code sql">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/test/app/dao/ClientDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/test/app/dao/ClientDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/test/app/dao/TableDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/test/app/dao/TableDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/test/app/view/booking/ConfirmFrm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/test/app/view/booking/ConfirmFrm.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/test/app/view/booking/SearchFreeTableFrm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/test/app/view/booking/SearchFreeTableFrm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/test/app/view/client/AddClientFrm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/test/app/view/client/AddClientFrm.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/test/app/view/client/SearchClientFrm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/test/app/view/client/SearchClientFrm.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/test/app/view/table/AddTableFrm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/test/app/view/table/AddTableFrm.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/test/app/view/table/DeleteTableFrm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/test/app/view/table/DeleteTableFrm.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/test/app/view/table/EditTableFrm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/test/app/view/table/EditTableFrm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/test/app/view/table/ManageTableFrm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/test/app/view/table/ManageTableFrm.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/test/app/view/table/SearchTableFrm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/test/app/view/table/SearchTableFrm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/test/app/view/user/LoginFrm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/test/app/view/user/LoginFrm.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/test/app/view/user/ManagerHomeFrm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/test/app/view/user/ManagerHomeFrm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/test/app/view/user/SellerHomeFrm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/test/app/view/user/SellerHomeFrm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/db/migration/V2__Insert_data_tbluser.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/db/migration/V2__Insert_data_tbluser.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

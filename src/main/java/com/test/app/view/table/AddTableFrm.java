@@ -89,17 +89,17 @@ public class AddTableFrm extends JFrame implements ActionListener {
                 if (rd.createTable(table)) {
                     JOptionPane.showMessageDialog(this,
                             "Thêm bàn thành công!");
-                    (new ManagerHomeFrm(user)).setVisible(true);
+                    new ManagerHomeFrm(user).setVisible(true);
                     this.dispose();
                 }
             } catch (RuntimeException e){
             JOptionPane.showMessageDialog(this,
                     e.getMessage(), "Lỗi", JOptionPane.ERROR_MESSAGE);
-                (new ManagerHomeFrm(user)).setVisible(true);
+                new ManagerHomeFrm(user).setVisible(true);
                 this.dispose();
         }
         } else {
-            (new ManagerHomeFrm(user)).setVisible(true);
+            new ManagerHomeFrm(user).setVisible(true);
             this.dispose();
         }
     }

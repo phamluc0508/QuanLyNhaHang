@@ -102,17 +102,17 @@ public class DeleteTableFrm extends JFrame implements ActionListener{
                 if (rd.deleteTable(table)) {
                     JOptionPane.showMessageDialog(this,
                             "Xóa bàn thành công!");
-                    (new ManagerHomeFrm(user)).setVisible(true);
+                    new ManagerHomeFrm(user).setVisible(true);
                     this.dispose();
                 }
             } catch (RuntimeException e){
                 JOptionPane.showMessageDialog(this,
                         e.getMessage(), "Lỗi", JOptionPane.ERROR_MESSAGE);
-                (new ManagerHomeFrm(user)).setVisible(true);
+                new ManagerHomeFrm(user).setVisible(true);
                 this.dispose();
             }
         } else {
-            (new ManagerHomeFrm(user)).setVisible(true);
+            new ManagerHomeFrm(user).setVisible(true);
             this.dispose();
         }
     }

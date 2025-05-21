@@ -107,7 +107,7 @@ public class SearchFreeTableFrm extends JFrame implements ActionListener {
                         booking.setBookDate(new Date());
                         
                         // Open SearchClientFrm
-                        (new SearchClientFrm(user, booking)).setVisible(true);
+                        new SearchClientFrm(user, booking).setVisible(true);
                         mainFrm.dispose();
                     } catch (Exception ex) {
                         JOptionPane.showMessageDialog(mainFrm, "Error: " + ex.getMessage());

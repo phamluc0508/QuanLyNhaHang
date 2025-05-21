@@ -63,8 +63,8 @@ public class LoginFrm extends JFrame implements ActionListener{
     }
  
     public void actionPerformed(ActionEvent e) {
-        if((e.getSource() instanceof JButton)
-                &&(e.getSource().equals(btnLogin))) {
+        Object source = e.getSource();
+        if(source.equals(btnLogin)) {
             User user = new User();
             user.setUsername(txtUsername.getText());
             user.setPassword(new String(txtPassword.getPassword()));
@@ -72,10 +72,10 @@ public class LoginFrm extends JFrame implements ActionListener{
             UserDAO ud = new UserDAO();
             if(ud.checkLogin(user)) {
                 if(user.getPosition().equalsIgnoreCase("quanly")) {
-                    (new ManagerHomeFrm(user)).setVisible(true);
+                    new ManagerHomeFrm(user).setVisible(true);
                     this.dispose();
                 }else if(user.getPosition().equalsIgnoreCase("letan")) {
-                    (new SellerHomeFrm(user)).setVisible(true);
+                    new SellerHomeFrm(user).setVisible(true);
                     this.dispose();
                 }else
                     JOptionPane.showMessageDialog(this, 

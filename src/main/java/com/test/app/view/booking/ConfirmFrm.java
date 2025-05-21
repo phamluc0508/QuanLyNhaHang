@@ -137,15 +137,15 @@ public class ConfirmFrm extends JFrame implements ActionListener {
             boolean success = bookingDAO.addBooking(booking);
             if (success) {
                 // Show success message and close
-                JOptionPane.showMessageDialog(this, "Booking added successfully");
-                (new SellerHomeFrm(user)).setVisible(true);
+                JOptionPane.showMessageDialog(this, "Đặt bàn thành công!");
+                new SellerHomeFrm(user).setVisible(true);
                 this.dispose();
             } else {
-                JOptionPane.showMessageDialog(this, "Failed to add booking");
+                JOptionPane.showMessageDialog(this, "Đặt bàn không thành công");
                 // Show error message
             }
         } else if (btnClicked.equals(btnCancel)) {
-            (new SellerHomeFrm(user)).setVisible(true);
+            new SellerHomeFrm(user).setVisible(true);
             this.dispose();
         }
     }

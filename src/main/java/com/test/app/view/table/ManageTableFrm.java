@@ -17,6 +17,7 @@ public class ManageTableFrm extends JFrame implements ActionListener{
     private final JButton btnAdd;
     private final JButton btnEdit;
     private final JButton btnDel;
+    private final JButton btnLogOut;
     private final User user;
  
     public ManageTableFrm(User user) {
@@ -25,13 +26,18 @@ public class ManageTableFrm extends JFrame implements ActionListener{
  
         JPanel listPane = new JPanel();
         listPane.setLayout(new BoxLayout(listPane, BoxLayout.PAGE_AXIS));
- 
+
+        btnLogOut = new JButton("Đăng xuất");
+        btnLogOut.addActionListener(this);
+
+        JLabel lblUser = new JLabel("Tên quản lý: " + user.getName());
+
         JPanel lblPane = new JPanel();
         lblPane.setLayout(new BoxLayout(lblPane, BoxLayout.LINE_AXIS));
-        lblPane.add(Box.createRigidArea(new Dimension(450, 0)));
-        JLabel lblUser = new JLabel("Tên quản lý: " + user.getName());
-        lblUser.setAlignmentX(Component.RIGHT_ALIGNMENT);   
+        lblPane.add(Box.createHorizontalGlue());
         lblPane.add(lblUser);
+        lblPane.add(Box.createRigidArea(new Dimension(10, 0)));
+        lblPane.add(btnLogOut);
         listPane.add(lblPane);
         listPane.add(Box.createRigidArea(new Dimension(0,20)));
  
