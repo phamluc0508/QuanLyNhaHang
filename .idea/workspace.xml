@@ -4,37 +4,32 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7426f04a-6f59-4bb8-b2df-621916cb207d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="7426f04a-6f59-4bb8-b2df-621916cb207d" name="Changes" comment="refactor code sql">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/test/app/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/test/app/dao/BookingDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/test/app/dao/BookingDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/test/app/dao/ClientDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/test/app/dao/ClientDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/test/app/dao/DAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/test/app/dao/DAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/test/app/dao/RoomDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/test/app/dao/TableDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/test/app/dao/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/test/app/dao/UserDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/test/app/model/BookedRoom.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/test/app/model/BookedTable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/test/app/model/Booking.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/test/app/model/Booking.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/test/app/model/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/test/app/model/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/test/app/model/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/test/app/model/Table.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/test/app/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/test/app/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/test/app/view/booking/AddRoomFrm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/test/app/view/table/AddTableFrm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/test/app/view/booking/ConfirmFrm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/test/app/view/booking/ConfirmFrm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/test/app/view/booking/SearchClientFrm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/test/app/view/client/SearchClientFrm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/test/app/view/booking/SearchFreeRoomFrm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/test/app/view/booking/SearchFreeTableFrm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/test/app/view/client/AddClientFrm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/test/app/view/client/AddClientFrm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/test/app/view/room/DeleteRoomFrm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/test/app/view/table/DeleteTableFrm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/test/app/view/room/EditRoomFrm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/test/app/view/table/EditTableFrm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/test/app/view/room/ManageRoomFrm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/test/app/view/table/ManageTableFrm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/test/app/view/room/SearchRoomFrm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/test/app/view/table/SearchTableFrm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/test/app/view/user/LoginFrm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/test/app/view/user/LoginFrm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/test/app/dao/TableDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/test/app/dao/TableDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/test/app/view/booking/SearchFreeTableFrm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/test/app/view/booking/SearchFreeTableFrm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/test/app/view/client/SearchClientFrm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/test/app/view/client/SearchClientFrm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/test/app/view/table/AddTableFrm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/test/app/view/table/AddTableFrm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/test/app/view/table/DeleteTableFrm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/test/app/view/table/DeleteTableFrm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/test/app/view/table/EditTableFrm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/test/app/view/table/EditTableFrm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/test/app/view/table/ManageTableFrm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/test/app/view/table/ManageTableFrm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/test/app/view/table/SearchTableFrm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/test/app/view/table/SearchTableFrm.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/test/app/view/user/ManagerHomeFrm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/test/app/view/user/ManagerHomeFrm.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/test/app/view/user/SellerHomeFrm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/test/app/view/user/SellerHomeFrm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/db/migration/V2__Insert_data_tbluser.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/db/migration/V2__Insert_data_tbluser.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -47,28 +42,34 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.LoginFrm.executor": "Debug",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/admin/Desktop/phamluc/QuanLyNhaHang",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.LoginFrm.executor&quot;: &quot;Debug&quot;,
+    &quot;Application.Main.executor&quot;: &quot;Debug&quot;,
+    &quot;Maven.QuanLyNhaHang [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.QuanLyNhaHang [install].executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/admin/Desktop/phamluc/QuanLyNhaHang&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
-    <configuration name="LoginFrm" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.test.app.view.user.LoginFrm" />
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.test.app.Main" />
       <module name="QuanLyNhaHang" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.test.app.view.user.*" />
+          <option name="PATTERN" value="com.test.app.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -78,7 +79,7 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.LoginFrm" />
+        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
   </component>
@@ -92,9 +93,57 @@
       <updated>1746603056661</updated>
       <workItem from="1746603057957" duration="24000" />
     </task>
+    <task id="LOCAL-00001" summary="hotfix: logic booking">
+      <option name="closed" value="true" />
+      <created>1747626603660</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1747626603660</updated>
+    </task>
+    <task id="LOCAL-00002" summary="feature: add flay way">
+      <option name="closed" value="true" />
+      <created>1747730088504</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1747730088504</updated>
+    </task>
+    <task id="LOCAL-00003" summary="feature: valid name table exist">
+      <option name="closed" value="true" />
+      <created>1747739779094</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1747739779095</updated>
+    </task>
+    <task id="LOCAL-00004" summary="feature: valid name table exist">
+      <option name="closed" value="true" />
+      <created>1747741435214</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1747741435214</updated>
+    </task>
+    <task id="LOCAL-00005" summary="refactor code sql">
+      <option name="closed" value="true" />
+      <created>1747791909522</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1747791909522</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="hotfix: logic booking" />
+    <MESSAGE value="feature: add flay way" />
+    <MESSAGE value="feature: valid name table exist" />
+    <MESSAGE value="refactor code sql" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor code sql" />
   </component>
 </project>

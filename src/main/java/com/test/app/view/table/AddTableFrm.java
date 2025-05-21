@@ -51,15 +51,12 @@ public class AddTableFrm extends JFrame implements ActionListener {
 
         JPanel content = new JPanel();
         content.setLayout(new GridLayout(6, 2));
-        content.add(new JLabel("Tên:"));
-        content.add(txtName);
-        content.add(new JLabel("Số lượng tối đa:"));
-        content.add(txtMaxNumber);
-        content.add(new JLabel("Mô tả:"));
-        content.add(txtDes);
-        content.add(btnCreate);
-        content.add(btnCancel);
+        content.add(new JLabel("Tên:"));                content.add(txtName);
+        content.add(new JLabel("Số lượng tối đa:"));    content.add(txtMaxNumber);
+        content.add(new JLabel("Mô tả:"));              content.add(txtDes);
+        content.add(btnCreate);                              content.add(btnCancel);
         pnMain.add(content);
+
         btnCreate.addActionListener(this);
         btnCancel.addActionListener(this);
 

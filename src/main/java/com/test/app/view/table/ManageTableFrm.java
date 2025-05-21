@@ -67,19 +67,17 @@ public class ManageTableFrm extends JFrame implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         // TODO Auto-generated method stub
-        if((e.getSource() instanceof JButton)&&
-                (e.getSource().equals(btnAdd))) {
-            (new AddTableFrm(user)).setVisible(true);
+        Object source = e.getSource();
+        if(source == btnAdd) {
+            new AddTableFrm(user).setVisible(true);
             this.dispose();
         }
-        else if((e.getSource() instanceof JButton)&&
-                (e.getSource().equals(btnEdit))) {
-            (new SearchTableFrm(user, "sửa")).setVisible(true);
+        else if(source == btnEdit) {
+            new SearchTableFrm(user, "sửa").setVisible(true);
             this.dispose();
         }
-        else if((e.getSource() instanceof JButton)&&
-                (e.getSource().equals(btnDel))) {
-            (new SearchTableFrm(user, "xóa")).setVisible(true);
+        else if(source == btnDel) {
+            new SearchTableFrm(user, "xóa").setVisible(true);
             this.dispose();
         }
         else {

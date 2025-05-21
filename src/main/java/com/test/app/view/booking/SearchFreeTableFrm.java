@@ -92,7 +92,7 @@ public class SearchFreeTableFrm extends JFrame implements ActionListener {
                         }
                         Date checkout = calendar.getTime();
                         Table selectedTable = listTable.get(row);
-                        
+
                         // Create BookedTable and add to Booking
                         BookedTable br = new BookedTable();
                         br.setTable(selectedTable);
@@ -100,7 +100,7 @@ public class SearchFreeTableFrm extends JFrame implements ActionListener {
                         br.setCheckout(checkout);
                         br.setPrice(0);
                         br.setCheckedIn(false);
-                        
+
                         Booking booking = new Booking();
                         booking.getBookedTables().add(br);
                         booking.setUser(user);
@@ -139,7 +139,7 @@ public class SearchFreeTableFrm extends JFrame implements ActionListener {
                 listTable = rd.searchFreeTable(checkin, maxNumber);
 
                 String[] columnNames = {"Id", "Tên", "Số lượng tối đa", "Mô tả"};
-                String[][] value = new String[listTable.size()][5];
+                String[][] value = new String[listTable.size()][4];
                 for (int i = 0; i < listTable.size(); i++) {
                     value[i][0] = listTable.get(i).getId() + "";
                     value[i][1] = listTable.get(i).getName();

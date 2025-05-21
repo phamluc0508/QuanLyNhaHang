@@ -57,12 +57,13 @@ public class DeleteTableFrm extends JFrame implements ActionListener{
          
         JPanel content = new JPanel();
         content.setLayout(new GridLayout(6,2));
-        content.add(new JLabel("Table ID:"));    content.add(txtId);
-        content.add(new JLabel("Table name:"));  content.add(txtName);
-        content.add(new JLabel("Max Number:"));  content.add(txtMaxNumber);
+        content.add(new JLabel("Table ID:"));       content.add(txtId);
+        content.add(new JLabel("Table name:"));     content.add(txtName);
+        content.add(new JLabel("Max Number:"));     content.add(txtMaxNumber);
         content.add(new JLabel("Description:"));    content.add(txtDes);
-        content.add(btnDel);     content.add(btnCancel);
-        pnMain.add(content);          
+        content.add(btnDel);                             content.add(btnCancel);
+        pnMain.add(content);
+
         btnDel.addActionListener(this);
         btnCancel.addActionListener(this);
          

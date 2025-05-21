@@ -100,13 +100,11 @@ public class SearchTableFrm extends JFrame implements ActionListener{
         // TODO Auto-generated method stub
         JButton btnClicked = (JButton)e.getSource();
         if(btnClicked.equals(btnSearch)){
-            if((txtKey.getText() == null)||(txtKey.getText().isEmpty()))
-                return;
             TableDAO rd = new TableDAO();
             listTable = rd.searchTable(txtKey.getText().trim());
  
             String[] columnNames = {"Id", "Tên", "Số lượng tối đa", "Mô tả"};
-            String[][] value = new String[listTable.size()][5];
+            String[][] value = new String[listTable.size()][4];
             for(int i=0; i<listTable.size(); i++){
                 value[i][0] = listTable.get(i).getId() +"";
                 value[i][1] = listTable.get(i).getName();

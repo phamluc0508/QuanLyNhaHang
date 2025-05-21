@@ -25,6 +25,7 @@ public class EditTableFrm extends JFrame implements ActionListener{
     private final JTextField txtDes;
     private final JButton btnUpdate;
     private final JButton btnReset;
+    private final JButton btnCancel;
     private final User user;
      
      
@@ -49,18 +50,21 @@ public class EditTableFrm extends JFrame implements ActionListener{
         txtName = new JTextField(15);
         txtMaxNumber = new JTextField(15);
         txtDes = new JTextField(15);
+        btnCancel = new JButton("Hủy");
         btnUpdate = new JButton("Lưu");
         btnReset = new JButton("Reset");
          
         JPanel content = new JPanel();
         content.setLayout(new GridLayout(6,2));
-        content.add(new JLabel("ID:"));    content.add(txtId);
-        content.add(new JLabel("Tên:"));  content.add(txtName);
-        content.add(new JLabel("Số lượng tối đa:"));  content.add(txtMaxNumber);
-        content.add(new JLabel("Mô tả:"));    content.add(txtDes);
-        content.add(btnUpdate);
-        content.add(btnReset);
-        pnMain.add(content);          
+        content.add(new JLabel("ID:"));                 content.add(txtId);
+        content.add(new JLabel("Tên:"));                content.add(txtName);
+        content.add(new JLabel("Số lượng tối đa:"));    content.add(txtMaxNumber);
+        content.add(new JLabel("Mô tả:"));              content.add(txtDes);
+        content.add(btnUpdate);                              content.add(btnReset);
+        content.add(btnCancel);
+        pnMain.add(content);
+
+        btnCancel.addActionListener(this);
         btnUpdate.addActionListener(this);
         btnReset.addActionListener(this);
          
@@ -89,26 +93,36 @@ public class EditTableFrm extends JFrame implements ActionListener{
             return;
         }
         if(btnClicked.equals(btnUpdate)){
-            btnUpdateClick();
+            btnUpdateClick(true);
+        }
+        if(btnClicked.equals(btnCancel)){
+            btnUpdateClick(false);
         }
     }
      
-    private void btnUpdateClick(){
-        table.setName(txtName.getText());
-        table.setMaxNumber(Integer.parseInt(txtMaxNumber.getText()));
-        table.setDes(txtDes.getText());
-         
-        TableDAO rd = new TableDAO();
-        try {
-            if (rd.updateTable(table)) {
+    private void btnUpdateClick(Boolean isUpdate){
+        if(isUpdate) {
+            Table updateTable = new Table();
+            updateTable.setId(table.getId());
+            updateTable.setName(txtName.getText());
+            updateTable.setMaxNumber(Integer.parseInt(txtMaxNumber.getText()));
+            updateTable.setDes(txtDes.getText());
+
+            TableDAO rd = new TableDAO();
+            try {
+                if (rd.updateTable(updateTable)) {
+                    JOptionPane.showMessageDialog(this,
+                            "Chỉnh sửa bàn thành công!");
+                    (new ManagerHomeFrm(user)).setVisible(true);
+                    this.dispose();
+                }
+            } catch (RuntimeException e) {
                 JOptionPane.showMessageDialog(this,
-                        "Chỉnh sửa bàn thành công!");
+                        e.getMessage(), "Lỗi", JOptionPane.ERROR_MESSAGE);
                 (new ManagerHomeFrm(user)).setVisible(true);
                 this.dispose();
             }
-        } catch (RuntimeException e){
-            JOptionPane.showMessageDialog(this,
-                    e.getMessage(), "Lỗi", JOptionPane.ERROR_MESSAGE);
+        } else {
             (new ManagerHomeFrm(user)).setVisible(true);
             this.dispose();
         }

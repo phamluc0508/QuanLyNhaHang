@@ -104,13 +104,11 @@ public class SearchClientFrm extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         JButton btnClicked = (JButton) e.getSource();
         if (btnClicked.equals(btnSearch)) {
-            if ((txtKey.getText() == null) || (txtKey.getText().isEmpty()))
-                return;
             ClientDAO cd = new ClientDAO();
             listClient = cd.searchClient(txtKey.getText().trim());
 
             String[] columnNames = {"Id", "Tên", "Địa chỉ", "Số điện thoại", "Email"};
-            String[][] value = new String[listClient.size()][7];
+            String[][] value = new String[listClient.size()][5];
             for (int i = 0; i < listClient.size(); i++) {
                 value[i][0] = listClient.get(i).getId() + "";
                 value[i][1] = listClient.get(i).getName();

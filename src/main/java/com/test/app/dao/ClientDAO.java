@@ -3,6 +3,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Objects;
+
 import com.test.app.model.Client;
  
 public class ClientDAO extends DAO{
@@ -13,10 +15,18 @@ public class ClientDAO extends DAO{
      */
     public ArrayList<Client> searchClient(String key){
         ArrayList<Client> result = new ArrayList<>();
-        String sql = "SELECT * FROM tblclient WHERE name LIKE ?";
+        String sql;
+        PreparedStatement ps;
         try{
-            PreparedStatement ps = con.prepareStatement(sql);
-            ps.setString(1, "%" + key + "%");
+            if(Objects.isNull(key) || key.isEmpty()){
+                sql = "SELECT * FROM tblclient";
+                ps = con.prepareStatement(sql);
+            } else {
+                sql = "SELECT * FROM tblclient WHERE name LIKE ?";
+                ps = con.prepareStatement(sql);
+                ps.setString(1, "%" + key + "%");
+            }
+
             ResultSet rs = ps.executeQuery();
  
             while(rs.next()){

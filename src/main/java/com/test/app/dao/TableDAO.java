@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Objects;
 
 import com.test.app.model.Table;
  
@@ -21,10 +22,17 @@ public class TableDAO extends DAO{
      */
     public ArrayList<Table> searchTable(String key){
         ArrayList<Table> result = new ArrayList<>();
-        String sql = "SELECT * FROM tbltable WHERE name LIKE ?";
+        String sql;
+        PreparedStatement ps;
         try{
-            PreparedStatement ps = con.prepareStatement(sql);
-            ps.setString(1, "%" + key + "%");
+            if(Objects.isNull(key) || key.isEmpty()){
+                sql = "SELECT * FROM tbltable";
+                ps = con.prepareStatement(sql);
+            } else {
+                sql = "SELECT * FROM tbltable WHERE name LIKE ?";
+                ps = con.prepareStatement(sql);
+                ps.setString(1, "%" + key + "%");
+            }
             ResultSet rs = ps.executeQuery();
  
             while(rs.next()){

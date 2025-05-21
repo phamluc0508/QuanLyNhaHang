@@ -17,6 +17,7 @@ import com.test.app.view.table.ManageTableFrm;
 
 public class ManagerHomeFrm extends JFrame implements ActionListener {
     private final JButton btnTable;
+    private final JButton btnLogOut;
     private final User user;
 
     public ManagerHomeFrm(User user) {
@@ -26,12 +27,17 @@ public class ManagerHomeFrm extends JFrame implements ActionListener {
         JPanel listPane = new JPanel();
         listPane.setLayout(new BoxLayout(listPane, BoxLayout.PAGE_AXIS));
 
+        btnLogOut = new JButton("Đăng xuất");
+        btnLogOut.addActionListener(this);
+
+        JLabel lblUser = new JLabel("Tên quản lý: " + user.getName());
+
         JPanel lblPane = new JPanel();
         lblPane.setLayout(new BoxLayout(lblPane, BoxLayout.LINE_AXIS));
-        lblPane.add(Box.createRigidArea(new Dimension(450, 0)));
-        JLabel lblUser = new JLabel("Tên quản lý: " + user.getName());
-        lblUser.setAlignmentX(Component.RIGHT_ALIGNMENT);
+        lblPane.add(Box.createHorizontalGlue());
         lblPane.add(lblUser);
+        lblPane.add(Box.createRigidArea(new Dimension(10, 0)));
+        lblPane.add(btnLogOut);
         listPane.add(lblPane);
         listPane.add(Box.createRigidArea(new Dimension(0, 20)));
 
@@ -41,10 +47,10 @@ public class ManagerHomeFrm extends JFrame implements ActionListener {
         listPane.add(lblHome);
         listPane.add(Box.createRigidArea(new Dimension(0, 20)));
 
-        JButton btnHotel = new JButton("Quản lý nhà hàng");
-        btnHotel.setAlignmentX(Component.CENTER_ALIGNMENT);
-        btnHotel.addActionListener(this);
-        listPane.add(btnHotel);
+        JButton btnRestaurant = new JButton("Quản lý nhà hàng");
+        btnRestaurant.setAlignmentX(Component.CENTER_ALIGNMENT);
+        btnRestaurant.addActionListener(this);
+        listPane.add(btnRestaurant);
         listPane.add(Box.createRigidArea(new Dimension(0, 10)));
 
         btnTable = new JButton("Quản lý bàn");
@@ -62,11 +68,16 @@ public class ManagerHomeFrm extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         // TODO Auto-generated method stub
-        if ((e.getSource() instanceof JButton) &&
-                (e.getSource().equals(btnTable))) {
-            (new ManageTableFrm(user)).setVisible(true);
+        Object source = e.getSource();
+        if (source == btnTable) {
+            new ManageTableFrm(user).setVisible(true);
             this.dispose();
-        } else {
+        }
+        else if (source == btnLogOut) {
+            new LoginFrm().setVisible(true);
+            this.dispose();
+        }
+        else {
             JOptionPane.showMessageDialog(this,
                     "This function is under construction!");
         }

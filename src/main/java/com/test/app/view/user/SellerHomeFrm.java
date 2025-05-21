@@ -14,9 +14,11 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import com.test.app.model.User;
 import com.test.app.view.booking.SearchFreeTableFrm;
+import com.test.app.view.table.ManageTableFrm;
 
 public class SellerHomeFrm extends JFrame implements ActionListener {
     private final JButton btnBooking;
+    private final JButton btnLogOut;
     private final User user;
 
     public SellerHomeFrm(User user) {
@@ -26,12 +28,17 @@ public class SellerHomeFrm extends JFrame implements ActionListener {
         JPanel listPane = new JPanel();
         listPane.setLayout(new BoxLayout(listPane, BoxLayout.PAGE_AXIS));
 
+        btnLogOut = new JButton("Đăng xuất");
+        btnLogOut.addActionListener(this);
+
+        JLabel lblUser = new JLabel("Lễ tân: " + user.getName());
+
         JPanel lblPane = new JPanel();
         lblPane.setLayout(new BoxLayout(lblPane, BoxLayout.LINE_AXIS));
-        lblPane.add(Box.createRigidArea(new Dimension(450, 0)));
-        JLabel lblUser = new JLabel("Lễ tân: " + user.getName());
-        lblUser.setAlignmentX(Component.RIGHT_ALIGNMENT);
+        lblPane.add(Box.createHorizontalGlue());
         lblPane.add(lblUser);
+        lblPane.add(Box.createRigidArea(new Dimension(10, 0)));
+        lblPane.add(btnLogOut);
         listPane.add(lblPane);
         listPane.add(Box.createRigidArea(new Dimension(0, 20)));
 
@@ -55,11 +62,16 @@ public class SellerHomeFrm extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         // TODO Auto-generated method stub
-        if ((e.getSource() instanceof JButton) &&
-                (e.getSource().equals(btnBooking))) {
-            (new SearchFreeTableFrm(user)).setVisible(true);
+        Object source = e.getSource();
+        if (source == btnBooking) {
+            new SearchFreeTableFrm(user).setVisible(true);
             this.dispose();
-        } else {
+        }
+        else if (source == btnLogOut) {
+            new LoginFrm().setVisible(true);
+            this.dispose();
+        }
+        else {
             JOptionPane.showMessageDialog(this,
                     "This function is under construction!");
         }
