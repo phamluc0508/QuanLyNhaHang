@@ -57,6 +57,11 @@ public class TableDAO extends DAO{
             throw new RuntimeException("Tên bàn đã tồn tại");
         }
 
+        if(Objects.isNull(tb.getMaxNumber())){
+            throw new RuntimeException("Số lượng không được để trống");
+        }
+        checkNumber(tb.getMaxNumber());
+
         String sql = "INSERT INTO tbltable (name, maxnumber, des) VALUES (?, ?, ?)";
         try{
             PreparedStatement ps = con.prepareStatement(sql,
@@ -85,6 +90,11 @@ public class TableDAO extends DAO{
         if (findTableByIdNotInAndName(tb.getId(), tb.getName())){
             throw new RuntimeException("Tên bàn đã tồn tại");
         }
+
+        if(Objects.isNull(tb.getMaxNumber())){
+            throw new RuntimeException("Số lượng không được để trống");
+        }
+        checkNumber(tb.getMaxNumber());
 
         String sql = "UPDATE tbltable SET name=?, maxNumber=?, des=? WHERE id=?";
         try{
@@ -122,6 +132,12 @@ public class TableDAO extends DAO{
             return false;
         }       
         return true;
+    }
+
+    private void checkNumber(int soluong){
+        if(soluong <=0 ){
+            throw new RuntimeException("Số lượng <= 0");
+        }
     }
 
     private boolean findTableByName(String name){
